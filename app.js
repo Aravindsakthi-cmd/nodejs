@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 app.get('/', (req, res) => {
-    res.send('Hello, this is a simple Node.js app deployed using Jenkins and Docker!');
+    res.send('Hello, this is a simple Node.js!');
 });
 
 const PORT = process.env.PORT || 3000;
