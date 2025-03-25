@@ -1,5 +1,5 @@
-# Use official Node.js image
-FROM node:14
+# Use Node.js LTS version as base image
+FROM node:18
 
 # Set working directory
 WORKDIR /app
@@ -8,12 +8,12 @@ WORKDIR /app
 COPY package.json ./
 RUN npm install
 
-# Copy app files
+# Copy the rest of the application
 COPY . .
 
-# Expose port 3000
+# Expose the application port
 EXPOSE 3000
 
-# Start application
+# Start the application
 CMD ["npm", "start"]
 
