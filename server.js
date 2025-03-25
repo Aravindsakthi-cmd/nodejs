@@ -1,24 +1,18 @@
 const express = require('express');
+const path = require('path');
 const app = express();
-const port = 3000;
 
-app.use(express.static('public'));
-app.use(express.json());  // Enable JSON parsing
+const PORT = process.env.PORT || 3000;
 
-// Default route - serves HTML
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/public/index.html');
+// Serve static files from "public"
+app.use(express.static(path.join(__dirname, 'public')));
+
+// API endpoint for button click
+app.get('/message', (req, res) => {
+    res.send('Hello from the Node.js server!');
 });
 
-// Handle user input
-app.post('/send-message', (req, res) => {
-    const userMessage = req.body.message;
-    console.log("Received:", userMessage);
-    
-    res.json({ reply: `You said: "${userMessage}" 🚀` });
+// Start the server
+app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
 });
-
-app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
-});
-
